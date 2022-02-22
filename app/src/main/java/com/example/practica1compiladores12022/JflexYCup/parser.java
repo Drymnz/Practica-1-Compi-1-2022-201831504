@@ -16,7 +16,7 @@ import java_cup.runtime.XMLElement;
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
 @SuppressWarnings({"rawtypes"})
-public class parser extends lr_parser {
+public class parser extends java_cup.runtime.lr_parser {
 
  public final Class getSymbolContainer() {
     return sym.class;
@@ -279,7 +279,7 @@ public class parser extends lr_parser {
              System.out.println("public void unrecoveredsyntax_error");
             }
         }
- /**
+   /**
      * ***CODE*******
      */
     private ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
@@ -300,12 +300,13 @@ public class parser extends lr_parser {
     //agregar grafica al listado
     private void addGraph() {
         Grafica add = null;
+        boolean requisitosBasicos = (!titulo.isEmpty()) && (listadoUnir!=null) && (listadoEjeX!=null | listadoEtiqueta!=null) && (listadoEjeY!=null | listadoValores!=null);
         //add Barra
-        if (tipoGrafica[0]) {
+        if (tipoGrafica[0] & requisitosBasicos) {
             add = new Barras(titulo, listadoUnir, listadoEjeY, listadoEjeX);
         }
         //add Pie
-        if (tipoGrafica[1]) {
+        if (tipoGrafica[1] & requisitosBasicos) {
             int cantidadPorcentaje = (tipo.equalsIgnoreCase("Porcentaje")) ? 0 : (tipo.equalsIgnoreCase("Cantidad")) ? 1 : 2;
             switch ((total == 0 && extra.isEmpty() && cantidadPorcentaje != 2) ? 0 : (total != 0 && extra.isEmpty() && cantidadPorcentaje != 2) ? 1 : (!extra.isEmpty() && total == 0 && cantidadPorcentaje != 2) ? 2 : (cantidadPorcentaje != 2) ? 3 : 4) {
                 case 0:
@@ -365,6 +366,14 @@ public class parser extends lr_parser {
             System.out.println("listadoGrafica>>>" + listadoGrafica.get(i).toString());
         }
         System.out.println("**********************************************************************");
+    }
+
+    public ArrayList<ReportesOperadoresMatematicos> getListadoReportesMatemtaicos() {
+        return listadoReportesMatemtaicos;
+    }
+
+    public ArrayList<Grafica> getListadoGrafica() {
+        return listadoGrafica;
     }
     /**
      * ***END CODE*******

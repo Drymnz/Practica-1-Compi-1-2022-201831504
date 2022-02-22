@@ -1,5 +1,4 @@
 *.iml
-*.jar
 *.class
 .gradle
 /local.properties
@@ -9,6 +8,7 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.app/src/main/java/com/example/practica1compiladores12022/JflexYCup/java-cup-11b.jar
 .DS_Store
 /build
 /captures
