@@ -2,6 +2,7 @@ package com.example.practica1compiladores12022;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("hola mundo");
     }
     public void recogerText(View view){
+        startActivity(new Intent(this,MainActivity_Grafica_View.class));
         String text = ingresoDeDatos.getText().toString();
         if (!text.isEmpty()){
             Reader reader = new StringReader(text);

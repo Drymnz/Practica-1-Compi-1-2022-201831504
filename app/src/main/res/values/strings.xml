@@ -3,4 +3,5 @@
     <string name="mensaje_one">Bienvenido a la app</string>
     <string name="ingreso_tex">por favor ingrese el texto aqui</string>
     <string name="analisar">Analisar</string>
+    <string name="btn_atras">Atras</string>
 </resources>
