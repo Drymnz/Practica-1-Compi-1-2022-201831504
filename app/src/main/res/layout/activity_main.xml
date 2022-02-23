@@ -11,7 +11,8 @@
         android:layout_width="375dp"
         android:layout_height="37dp"
         android:layout_marginTop="60dp"
-        android:text="TextView"
+        android:hint="@string/mensaje_one"
+        android:text="@string/mensaje_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,21 +22,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:onClick="recogerText"
-        android:text="Button"
+        android:text="@string/analisar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingresoDatos"
-        app:layout_constraintVertical_bias="0.359" />
+        app:layout_constraintVertical_bias="0.122" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/ingresoDatos"
         android:layout_width="386dp"
         android:layout_height="380dp"
         android:layout_marginTop="24dp"
-        android:hint="hint"
+        android:gravity="top"
+        android:hint="@string/ingreso_tex"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"

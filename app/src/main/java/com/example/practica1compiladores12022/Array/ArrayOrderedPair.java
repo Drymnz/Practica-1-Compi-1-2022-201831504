@@ -56,4 +56,15 @@ public class ArrayOrderedPair {
         return retur;
     }
 
+    public double[][] getList() {
+        return list;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
