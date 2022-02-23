@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica1Compiladores12022">
         <activity
+            android:name=".MainActivity_View_Grafica"
+            android:exported="false"
+            android:label="@string/title_activity_main_view_grafica"
+            android:theme="@style/Theme.Practica1Compiladores12022.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -19,4 +24,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
