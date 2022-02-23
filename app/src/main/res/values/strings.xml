@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Practica 1 Compiladores 1 2022</string>
+    <string name="mensaje_one">Bienvenido a la app</string>
+    <string name="ingreso_tex">por favor ingrese el texto aqui</string>
+    <string name="analisar">Analisar</string>
 </resources>
