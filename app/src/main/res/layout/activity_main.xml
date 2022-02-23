@@ -11,8 +11,7 @@
         android:layout_width="375dp"
         android:layout_height="37dp"
         android:layout_marginTop="60dp"
-        android:hint="@string/mensaje_one"
-        android:text="@string/mensaje_one"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,24 +21,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
         android:onClick="recogerText"
-        android:text="@string/analisar"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingresoDatos" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingresoDatos"
+        app:layout_constraintVertical_bias="0.359" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/ingresoDatos"
         android:layout_width="386dp"
         android:layout_height="380dp"
         android:layout_marginTop="24dp"
-        android:gravity="center|top"
-        android:hint="@string/ingreso_tex"
+        android:hint="hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mostarText"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/mostarText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

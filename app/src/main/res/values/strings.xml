@@ -3,13 +3,4 @@
     <string name="mensaje_one">Bienvenido a la app</string>
     <string name="ingreso_tex">por favor ingrese el texto aqui</string>
     <string name="analisar">Analisar</string>
-    <string name="title_activity_main_view_grafica">MainActivity_View_Grafica</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
