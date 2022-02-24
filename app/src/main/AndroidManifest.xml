@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica1Compiladores12022">
         <activity
+            android:name=".MainActivity_View_Grafica_Barra"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity_Grafica_View"
             android:exported="false" />
         <activity

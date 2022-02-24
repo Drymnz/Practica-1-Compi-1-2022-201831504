@@ -15,35 +15,30 @@ import java.util.List;
 
 public class ConvertidorGraficaChart {
 
-private ArrayList<BarDataSet> listBar = new ArrayList<>();
-private ArrayList<PieDataSet> listPie = new ArrayList<>();
+private String[] listadoNombre ;
 
 
-    public void convertir(ArrayList<Grafica> listadoGrafica){
-         ArrayList<BarEntry> detallesBarra = new ArrayList<>();
-         ArrayList<PieEntry> detallePie = new ArrayList<>();
+    public void listar(ArrayList<Grafica> listadoGrafica){
+        listadoNombre = new String[listadoGrafica.size()];
         for (int i = 0;  i < listadoGrafica.size() ; i++){
-            // esta parte añade las graficas en barras
-            if (listadoGrafica.get(i) instanceof Barras){
-                Barras barra = (Barras) listadoGrafica.get(i);
-                if (barra.getUnion() != null){
-                    for (int j = 0 ; j < barra.getUnion().getX() ; j++) {
-                        int valorX = (int) barra.getUnion().getList()[j][0];
-                        int valorY = (int) barra.getUnion().getList()[j][barra.getUnion().getY()-1];
-                        float meter = (float) valor(barra.getListDouble(), valorX);
-                        detallesBarra.add(new BarEntry((j+1), meter));
-                    }
-                    BarDataSet add = new BarDataSet(detallesBarra,"hola");
-                    add.setColors(ColorTemplate.COLORFUL_COLORS);
-                    add.setDrawValues(false);
-                    listBar.add(add);
-                    detallesBarra = new ArrayList<>();
-                }
-            }
-            // esta parte añade las graficas en pie
-            if (listadoGrafica.get(i) instanceof Pie){
-            }
+            listadoNombre[i]  = listadoGrafica.get(i).getTitulo();
         }
+    }
+    public BarDataSet convertirBarra(Barras barra){
+        if (barra.getUnion() != null){
+            ArrayList<BarEntry> detallesBarra = new ArrayList<>();
+            for (int j = 0 ; j < barra.getUnion().getX() ; j++) {
+                int valorX = (int) barra.getUnion().getList()[j][0];
+                int valorY = (int) barra.getUnion().getList()[j][barra.getUnion().getY()-1];
+                float meter = (float) valor(barra.getListDouble(), valorX);
+                detallesBarra.add(new BarEntry((j+1), meter));
+            }
+            BarDataSet add = new BarDataSet(detallesBarra,barra.getTitulo());
+            add.setColors(ColorTemplate.COLORFUL_COLORS);
+            add.setDrawValues(false);
+            return add;
+        }
+        return null;
     }
     private double valor(ArrayDouble listDouble, int valorX){
         if ( valorX < listDouble.getList().length && valorX >= 0){
@@ -58,11 +53,7 @@ private ArrayList<PieDataSet> listPie = new ArrayList<>();
         return "";
     }
 
-    public ArrayList<BarDataSet> getListBar() {
-        return listBar;
-    }
-
-    public ArrayList<PieDataSet> getListPie() {
-        return listPie;
+    public String[] getListadoNombre() {
+        return listadoNombre;
     }
 }

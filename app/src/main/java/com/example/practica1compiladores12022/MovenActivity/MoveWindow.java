@@ -21,10 +21,7 @@ public class MoveWindow {
     private Lexema lexema;
     private parser sintac;
     private ArrayList<ErrorAnalisando> list;
-    private ConvertidorGraficaChart convertir = new ConvertidorGraficaChart();
-    private ArrayList<BarDataSet> listBar = new ArrayList<>();
-    private ArrayList<PieDataSet> listPie = new ArrayList<>();
-
+    public  ConvertidorGraficaChart convertir = new ConvertidorGraficaChart();
 
     public boolean MovenAnalisador (@NonNull String text){
         if (!text.isEmpty()){
@@ -36,9 +33,7 @@ public class MoveWindow {
                 sintac.parse();
                 System.out.println(sintac.getListadoGrafica().get(0).toString());
                 if (sintac.getListadoGrafica()!=null && !sintac.getListadoGrafica().isEmpty()){
-                    convertir.convertir(sintac.getListadoGrafica());
-                    listBar = convertir.getListBar();
-                    listPie = convertir.getListPie();
+                    convertir.listar(sintac.getListadoGrafica());
                 }
             } catch (Exception ex) {
                 Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,23 +46,19 @@ public class MoveWindow {
         return false;
     }
 
-    public void setLexema(Lexema lexema) {
-        this.lexema = lexema;
+    public ArrayList<ErrorAnalisando> getList() {
+        return list;
     }
 
-    public void setSintac(parser sintac) {
-        this.sintac = sintac;
+    public Lexema getLexema() {
+        return lexema;
     }
 
-    public void setList(ArrayList<ErrorAnalisando> list) {
-        this.list = list;
+    public parser getSintac() {
+        return sintac;
     }
 
-    public ArrayList<BarDataSet> getListBar() {
-        return listBar;
-    }
-
-    public ArrayList<PieDataSet> getListPie() {
-        return listPie;
+    public ConvertidorGraficaChart getConvertir() {
+        return convertir;
     }
 }
