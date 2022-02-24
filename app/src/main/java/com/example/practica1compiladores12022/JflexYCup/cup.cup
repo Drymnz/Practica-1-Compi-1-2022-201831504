@@ -20,6 +20,8 @@ import java.util.ArrayList;
         public void syntax_error(Symbol cur_token) {
         System.out.println("El error es el simbolo: " + sym.terminalNames[cur_token.sym]);
         System.out.println(String.format("En la posicion: %d, %d", cur_token.left, cur_token.right));
+        ErrorAnalisando nuevo = new ErrorAnalisando(yytext(), cur_token.left, cur_token.right, "Sintactico", "Se estperaba otra cosa");
+        listError.add(nuevo);
         }
 
         public void unrecovered_syntax_error(Symbol cur_token) {
@@ -27,27 +29,33 @@ import java.util.ArrayList;
              System.out.println("public void unrecoveredsyntax_error");
             }
         }
-/**
+    /**
      * ***CODE*******
      */
     private ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
+    private ArrayList<ErrorAnalisando> listError = new ArrayList<>();
     private ArrayList<Grafica> listadoGrafica = new ArrayList<>();
+    private ArrayList<Grafica> listadoGraficaPosible = new ArrayList<>();
     //valors para crear graficas
+    //para cualquier grafica
+    private ArrayOrderedPair listadoUnir = new ArrayOrderedPair();//if registra[2] == true
+    private String titulo;
+    private boolean[] registrar = {true, true, true};//arreglo para indicar que solo una ves analise el etributo
+    private boolean[] tipoGrafica = {false, false};//tipoGrafica[0]=BARRAS , tipoGrafica[1]PIE
+    //barras
     private ArrayList<String> listadoEjeX = new ArrayList<>(); //if registra[0] == true
+    private ArrayDouble listadoEjeY = new ArrayDouble();//if registra[1] == true
+    //pie
     private ArrayList<String> listadoEtiqueta = new ArrayList<>(); //if registra[0] == true
     private ArrayDouble listadoValores = new ArrayDouble();//if registra[1] == true
-    private ArrayDouble listadoEjeY = new ArrayDouble();//if registra[1] == true
-    private ArrayOrderedPair listadoUnir = new ArrayOrderedPair();//if registra[2] == true
-    private boolean[] registrar = {true, true, true};
-    private boolean[] tipoGrafica = {false, false};//tipoGrafica[0]=BARRAS , tipoGrafica[1]PIE
     private double total;
-    private String titulo;
     private String tipo;
     private String extra;
 
     //agregar grafica al listado
     private void addGraph() {
         Grafica add = null;
+        //los requisitos minimos de una grafica es tener titulo un par ordenado para valor y caracter y su listado de valores y listado de caracter
         boolean requisitosBasicos = (!titulo.isEmpty()) && (listadoUnir!=null) && (listadoEjeX!=null | listadoEtiqueta!=null) && (listadoEjeY!=null | listadoValores!=null);
         //add Barra
         if (tipoGrafica[0] & requisitosBasicos) {
@@ -74,14 +82,9 @@ import java.util.ArrayList;
                     throw new AssertionError();
             }
         }
-        if (add == null) {
-            System.out.println("NO SE ENCONTRO NADA PARA AÑADIR AL LISTADO GRAFICA");
-        } else {
-            listadoGrafica.add(add);
-        }
+        if (add != null) listadoGraficaPosible.add(add);
     }
-    //En esta parte regresa los atributos a su estado inicial
-
+    //En esta metodo regresa los atributos a su estado inicial
     private void restoreString() {
         total = 0;
         titulo = "";
@@ -99,7 +102,6 @@ import java.util.ArrayList;
         tipoGrafica[1] = false;
     }
 // solo prubas en terminal
-
     private void printString() {
         System.out.println("**********" + "titulo>>>" + titulo + "*********************************");
         System.out.println("total>>>" + total);
@@ -115,6 +117,16 @@ import java.util.ArrayList;
         }
         System.out.println("**********************************************************************");
     }
+    // aqui lista la graficas que se va a pode graficar
+    private void listarGraficas(String titulo){
+        if (!listadoGraficaPosible.isEmpty()) {
+            for (Grafica grafica : listadoGraficaPosible) {
+                if (grafica.getTitulo().equalsIgnoreCase(titulo)){
+                    listadoGrafica.add(grafica);
+                }
+            }
+        }
+    }
 
     public ArrayList<ReportesOperadoresMatematicos> getListadoReportesMatemtaicos() {
         return listadoReportesMatemtaicos;
@@ -123,6 +135,7 @@ import java.util.ArrayList;
     public ArrayList<Grafica> getListadoGrafica() {
         return listadoGrafica;
     }
+
     /**
      * ***END CODE*******
      */
@@ -141,7 +154,8 @@ terminal String PORCENTAJE,CANTIDAD;
 non terminal i; /*terminal donde inicia*/
 non terminal p,q,g,a,r,l; /*detalles de pie*/
 non terminal b,x,y; /*detalles de barras*/
-non terminal u,t,d,e;/*no terminales conpartidos*/
+non terminal u,t,d,e;/*no terminal| error
+es conpartidos*/
 non terminal String o,j;/*para el uso de operaciones aritmeticas*/
 non terminal String w,v,z; /*estos no terminales me sirvieron para solucionar 32,23 y texto,text,text*/
 /*************************************PRECEDENCIA******************************************************/
@@ -197,6 +211,7 @@ b ::= u b  /*UNIR*/
             //printString();//solo pruevas
             restoreString();
             :}
+| error {:System.out.println("¡¡¡¡¡ERROR!!!!");:}
 ;
 x ::= EJEX DOBLEPUNTO CORCHETE_A  v  CORCHETE_C PUNTOYCOMA {:registrar[0]=false;:}
 ;
@@ -215,6 +230,7 @@ p ::= u p
             //printString();//solo pruevas
             restoreString();
             :}
+| error {:System.out.println("¡¡¡¡¡ERROR!!!!");:}
 ;
 g ::= TIPO DOBLEPUNTO PORCENTAJE:text PUNTOYCOMA  {:tipo=text;:}
 | TIPO DOBLEPUNTO CANTIDAD:text PUNTOYCOMA  {:tipo=text;:}
@@ -247,12 +263,12 @@ w ::= j:a COMA w {:
         :}
 ;
 v ::= TEXT:text COMA w {:
-                        if(registrar[1] && tipoGrafica[0]) {listadoEjeX.add(text);}
-                        if(registrar[1] && tipoGrafica[1]) {listadoEtiqueta.add(text);}
+                        if(registrar[1] && tipoGrafica[0]) {listadoEjeX.add(text.substring(1, text.length()-1));}
+                        if(registrar[1] && tipoGrafica[1]) {listadoEtiqueta.add(text.substring(1, text.length()-1));}
                         :}
 | TEXT:text {:
-            if(registrar[1] && tipoGrafica[0]) {listadoEjeX.add(text);}
-            if(registrar[1] && tipoGrafica[1]) {listadoEtiqueta.add(text);}
+            if(registrar[1] && tipoGrafica[0]) {listadoEjeX.add(text.substring(1, text.length()-1));}
+            if(registrar[1] && tipoGrafica[1]) {listadoEtiqueta.add(text.substring(1, text.length()-1));}
             :}
 ;
 /***************INICIO DEL ANALISADOR***************/
@@ -261,6 +277,6 @@ i ::= DEF BARRAS {:tipoGrafica[0]=true;:} LLAVE_A b  i
 | e 
 | error {:System.out.println("¡¡¡¡¡ERROR!!!!");:}
 ;
-e ::= EJECUTAR PARENTESIS_A TEXT:e PARENTESIS_C PUNTOYCOMA e 
-| 
+e ::= EJECUTAR PARENTESIS_A TEXT:text PARENTESIS_C PUNTOYCOMA e {:listarGraficas(text.substring(1, text.length()-1));:}
+|
 ;

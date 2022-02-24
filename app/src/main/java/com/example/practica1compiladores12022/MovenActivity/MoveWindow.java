@@ -7,8 +7,6 @@ import com.example.practica1compiladores12022.JflexYCup.ErrorAnalisando;
 import com.example.practica1compiladores12022.JflexYCup.Lexema;
 import com.example.practica1compiladores12022.JflexYCup.parser;
 import com.example.practica1compiladores12022.MainActivity;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.PieDataSet;
 
 import java.io.Reader;
 import java.io.StringReader;
@@ -20,18 +18,19 @@ public class MoveWindow {
 
     private Lexema lexema;
     private parser sintac;
-    private ArrayList<ErrorAnalisando> list;
+    private ArrayList<ErrorAnalisando> listError;
     public  ConvertidorGraficaChart convertir = new ConvertidorGraficaChart();
-
+/*
+metodo resibe un String para analisar sintacticamente
+* */
     public boolean MovenAnalisador (@NonNull String text){
         if (!text.isEmpty()){
             Reader reader = new StringReader(text);
             lexema = new Lexema(reader);
-            list = lexema.getListError();
+            listError = lexema.getListError();
             sintac = new parser(lexema);
             try {
                 sintac.parse();
-                System.out.println(sintac.getListadoGrafica().get(0).toString());
                 if (sintac.getListadoGrafica()!=null && !sintac.getListadoGrafica().isEmpty()){
                     convertir.listar(sintac.getListadoGrafica());
                 }
@@ -46,8 +45,8 @@ public class MoveWindow {
         return false;
     }
 
-    public ArrayList<ErrorAnalisando> getList() {
-        return list;
+    public ArrayList<ErrorAnalisando> getListError() {
+        return listError;
     }
 
     public Lexema getLexema() {

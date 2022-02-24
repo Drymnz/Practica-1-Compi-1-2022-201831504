@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main_grafica_view.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_main_view_grafica.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main_view_grafica_barra.xml" value="0.14" />
       </map>
     </option>
   </component>

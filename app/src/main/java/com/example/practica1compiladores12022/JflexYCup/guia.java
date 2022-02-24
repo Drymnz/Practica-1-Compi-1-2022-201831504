@@ -7,27 +7,35 @@ import com.example.practica1compiladores12022.Resportes.ReportesOperadoresMatema
 import java.util.ArrayList;
 
 public class guia {
+
+
     /**
      * ***CODE*******
      */
     private ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
+    private ArrayList<ErrorAnalisando> listError = new ArrayList<>();
     private ArrayList<Grafica> listadoGrafica = new ArrayList<>();
+    private ArrayList<Grafica> listadoGraficaPosible = new ArrayList<>();
     //valors para crear graficas
+    //para cualquier grafica
+    private ArrayOrderedPair listadoUnir = new ArrayOrderedPair();//if registra[2] == true
+    private String titulo;
+    private boolean[] registrar = {true, true, true};//arreglo para indicar que solo una ves analise el etributo
+    private boolean[] tipoGrafica = {false, false};//tipoGrafica[0]=BARRAS , tipoGrafica[1]PIE
+    //barras
     private ArrayList<String> listadoEjeX = new ArrayList<>(); //if registra[0] == true
+    private ArrayDouble listadoEjeY = new ArrayDouble();//if registra[1] == true
+    //pie
     private ArrayList<String> listadoEtiqueta = new ArrayList<>(); //if registra[0] == true
     private ArrayDouble listadoValores = new ArrayDouble();//if registra[1] == true
-    private ArrayDouble listadoEjeY = new ArrayDouble();//if registra[1] == true
-    private ArrayOrderedPair listadoUnir = new ArrayOrderedPair();//if registra[2] == true
-    private boolean[] registrar = {true, true, true};
-    private boolean[] tipoGrafica = {false, false};//tipoGrafica[0]=BARRAS , tipoGrafica[1]PIE
     private double total;
-    private String titulo;
     private String tipo;
     private String extra;
 
     //agregar grafica al listado
     private void addGraph() {
         Grafica add = null;
+        //los requisitos minimos de una grafica es tener titulo un par ordenado para valor y caracter y su listado de valores y listado de caracter
         boolean requisitosBasicos = (!titulo.isEmpty()) && (listadoUnir!=null) && (listadoEjeX!=null | listadoEtiqueta!=null) && (listadoEjeY!=null | listadoValores!=null);
         //add Barra
         if (tipoGrafica[0] & requisitosBasicos) {
@@ -54,14 +62,9 @@ public class guia {
                     throw new AssertionError();
             }
         }
-        if (add == null) {
-            System.out.println("NO SE ENCONTRO NADA PARA AÑADIR AL LISTADO GRAFICA");
-        } else {
-            listadoGrafica.add(add);
-        }
+        if (add != null) listadoGraficaPosible.add(add);
     }
-    //En esta parte regresa los atributos a su estado inicial
-
+    //En esta metodo regresa los atributos a su estado inicial
     private void restoreString() {
         total = 0;
         titulo = "";
@@ -79,7 +82,6 @@ public class guia {
         tipoGrafica[1] = false;
     }
 // solo prubas en terminal
-
     private void printString() {
         System.out.println("**********" + "titulo>>>" + titulo + "*********************************");
         System.out.println("total>>>" + total);
@@ -95,6 +97,16 @@ public class guia {
         }
         System.out.println("**********************************************************************");
     }
+    // aqui lista la graficas que se va a pode graficar
+    private void listarGraficas(String titulo){
+        if (!listadoGraficaPosible.isEmpty()) {
+            for (Grafica grafica : listadoGraficaPosible) {
+                if (grafica.getTitulo().equalsIgnoreCase(titulo)){
+                    listadoGrafica.add(grafica);
+                }
+            }
+        }
+    }
 
     public ArrayList<ReportesOperadoresMatematicos> getListadoReportesMatemtaicos() {
         return listadoReportesMatemtaicos;
@@ -103,6 +115,7 @@ public class guia {
     public ArrayList<Grafica> getListadoGrafica() {
         return listadoGrafica;
     }
+
     /**
      * ***END CODE*******
      */
