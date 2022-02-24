@@ -116,6 +116,10 @@ public class guia {
         return listadoGrafica;
     }
 
+    public ArrayList<ErrorAnalisando> getListError() {
+
+        return listError;
+    }
     /**
      * ***END CODE*******
      */

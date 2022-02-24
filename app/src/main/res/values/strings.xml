@@ -4,4 +4,5 @@
     <string name="ingreso_tex">por favor ingrese el texto aqui</string>
     <string name="analisar">Analisar</string>
     <string name="btn_atras">Atras</string>
+    <string name="btn_reportes">Reportes</string>
 </resources>

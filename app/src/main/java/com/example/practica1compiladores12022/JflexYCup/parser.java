@@ -280,7 +280,7 @@ public class parser extends java_cup.runtime.lr_parser {
         public void syntax_error(Symbol cur_token) {
         System.out.println("El error es el simbolo: " + sym.terminalNames[cur_token.sym]);
         System.out.println(String.format("En la posicion: %d, %d", cur_token.left, cur_token.right));
-        ErrorAnalisando nuevo = new ErrorAnalisando(yytext(), cur_token.left, cur_token.right, "Sintactico", "Se estperaba otra cosa");
+        ErrorAnalisando nuevo = new ErrorAnalisando(sym.terminalNames[cur_token.sym].toString(), cur_token.left, cur_token.right, "Sintactico", "Se estperaba otra cosa");
         listError.add(nuevo);
         }
 
@@ -396,6 +396,9 @@ public class parser extends java_cup.runtime.lr_parser {
         return listadoGrafica;
     }
 
+    public ArrayList<ErrorAnalisando> getListError() {
+        return listError;
+    }
     /**
      * ***END CODE*******
      */

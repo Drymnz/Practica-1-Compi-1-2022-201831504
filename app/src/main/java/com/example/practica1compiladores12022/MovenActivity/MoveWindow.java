@@ -34,6 +34,11 @@ metodo resibe un String para analisar sintacticamente
                 if (sintac.getListadoGrafica()!=null && !sintac.getListadoGrafica().isEmpty()){
                     convertir.listar(sintac.getListadoGrafica());
                 }
+                if (!sintac.getListError().isEmpty()){
+                    for (ErrorAnalisando error : sintac.getListError()){
+                        listError.add(error);
+                    }
+                }
             } catch (Exception ex) {
                 Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println(ex.getMessage());
