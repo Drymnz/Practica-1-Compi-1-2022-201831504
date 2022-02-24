@@ -1,17 +1,18 @@
 package com.example.practica1compiladores12022.MovenActivity;
 
+import androidx.annotation.NonNull;
+
 import com.example.practica1compiladores12022.Grafica.ConvertidorGraficaChart;
 import com.example.practica1compiladores12022.JflexYCup.ErrorAnalisando;
 import com.example.practica1compiladores12022.JflexYCup.Lexema;
 import com.example.practica1compiladores12022.JflexYCup.parser;
 import com.example.practica1compiladores12022.MainActivity;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.PieDataSet;
 
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,10 +22,11 @@ public class MoveWindow {
     private parser sintac;
     private ArrayList<ErrorAnalisando> list;
     private ConvertidorGraficaChart convertir = new ConvertidorGraficaChart();
-    private List<BarChart> listBar = new ArrayList<>();
-    private List<PieChart> listPie = new ArrayList<>();
+    private ArrayList<BarDataSet> listBar = new ArrayList<>();
+    private ArrayList<PieDataSet> listPie = new ArrayList<>();
 
-    public boolean MovenAnalisador (String text){
+
+    public boolean MovenAnalisador (@NonNull String text){
         if (!text.isEmpty()){
             Reader reader = new StringReader(text);
             lexema = new Lexema(reader);
@@ -32,9 +34,12 @@ public class MoveWindow {
             sintac = new parser(lexema);
             try {
                 sintac.parse();
-                convertir.convertir(sintac.getListadoGrafica());
-                listBar = convertir.getListBar();
-                listPie = convertir.getListPie();
+                System.out.println(sintac.getListadoGrafica().get(0).toString());
+                if (sintac.getListadoGrafica()!=null && !sintac.getListadoGrafica().isEmpty()){
+                    convertir.convertir(sintac.getListadoGrafica());
+                    listBar = convertir.getListBar();
+                    listPie = convertir.getListPie();
+                }
             } catch (Exception ex) {
                 Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println(ex.getMessage());
@@ -58,11 +63,11 @@ public class MoveWindow {
         this.list = list;
     }
 
-    public List<BarChart> getListBar() {
+    public ArrayList<BarDataSet> getListBar() {
         return listBar;
     }
 
-    public List<PieChart> getListPie() {
+    public ArrayList<PieDataSet> getListPie() {
         return listPie;
     }
 }

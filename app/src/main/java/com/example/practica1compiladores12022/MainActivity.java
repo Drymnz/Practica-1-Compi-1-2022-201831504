@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         if (!ingresoDeDatos.getText().toString().isEmpty()) {
             Intent next = new Intent(this,MainActivity_Grafica_View.class);
             next.putExtra("text",ingresoDeDatos.getText().toString());
+            startActivity(next);
         }else{
             Toast.makeText(this,"Por favor ingrese un texto",Toast.LENGTH_LONG);
         }
-
     }
 }

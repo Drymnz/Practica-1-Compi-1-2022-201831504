@@ -38,16 +38,16 @@ public class guia {
             int cantidadPorcentaje = (tipo.equalsIgnoreCase("Porcentaje")) ? 0 : (tipo.equalsIgnoreCase("Cantidad")) ? 1 : 2;
             switch ((total == 0 && extra.isEmpty() && cantidadPorcentaje != 2) ? 0 : (total != 0 && extra.isEmpty() && cantidadPorcentaje != 2) ? 1 : (!extra.isEmpty() && total == 0 && cantidadPorcentaje != 2) ? 2 : (cantidadPorcentaje != 2) ? 3 : 4) {
                 case 0:
-                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, titulo, listadoUnir, listadoValores, listadoEtiqueta);
+                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 1:
-                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, titulo, listadoUnir, listadoValores, listadoEtiqueta);
+                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 2:
-                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, extra, titulo, listadoUnir, listadoValores, listadoEtiqueta);
+                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, extra, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 3:
-                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, extra, titulo, listadoUnir, listadoValores, listadoEtiqueta);
+                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, extra +"", titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 default:
                     System.out.println("NO SE ENCONTRO NADA PARA AÑADIR AL LISTADO GRAFICA");
@@ -64,14 +64,14 @@ public class guia {
 
     private void restoreString() {
         total = 0;
-        titulo = null;
-        tipo = null;
-        extra = null;
-        listadoEjeX.clear();
-        listadoEjeY.clear();
-        listadoValores.clear();
-        listadoEtiqueta.clear();
-        listadoUnir.clear();
+        titulo = "";
+        tipo = "";
+        extra = "";
+        listadoEjeX = new ArrayList<>();
+        listadoEjeY = new ArrayDouble();
+        listadoValores = new ArrayDouble();
+        listadoEtiqueta = new ArrayList<>();
+        listadoUnir = new ArrayOrderedPair();
         registrar[0] = true;
         registrar[2] = true;
         registrar[1] = true;

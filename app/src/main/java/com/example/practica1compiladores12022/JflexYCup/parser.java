@@ -279,7 +279,7 @@ public class parser extends java_cup.runtime.lr_parser {
              System.out.println("public void unrecoveredsyntax_error");
             }
         }
-   /**
+/**
      * ***CODE*******
      */
     private ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
@@ -310,16 +310,16 @@ public class parser extends java_cup.runtime.lr_parser {
             int cantidadPorcentaje = (tipo.equalsIgnoreCase("Porcentaje")) ? 0 : (tipo.equalsIgnoreCase("Cantidad")) ? 1 : 2;
             switch ((total == 0 && extra.isEmpty() && cantidadPorcentaje != 2) ? 0 : (total != 0 && extra.isEmpty() && cantidadPorcentaje != 2) ? 1 : (!extra.isEmpty() && total == 0 && cantidadPorcentaje != 2) ? 2 : (cantidadPorcentaje != 2) ? 3 : 4) {
                 case 0:
-                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, titulo, listadoUnir, listadoValores, listadoEtiqueta);
+                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 1:
-                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, titulo, listadoUnir, listadoValores, listadoEtiqueta);
+                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 2:
-                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, extra, titulo, listadoUnir, listadoValores, listadoEtiqueta);
+                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, extra, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 3:
-                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, extra, titulo, listadoUnir, listadoValores, listadoEtiqueta);
+                    add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, extra +"", titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 default:
                     System.out.println("NO SE ENCONTRO NADA PARA AÑADIR AL LISTADO GRAFICA");
@@ -336,14 +336,14 @@ public class parser extends java_cup.runtime.lr_parser {
 
     private void restoreString() {
         total = 0;
-        titulo = null;
-        tipo = null;
-        extra = null;
-        listadoEjeX.clear();
-        listadoEjeY.clear();
-        listadoValores.clear();
-        listadoEtiqueta.clear();
-        listadoUnir.clear();
+        titulo = "";
+        tipo = "";
+        extra = "";
+        listadoEjeX = new ArrayList<>();
+        listadoEjeY = new ArrayDouble();
+        listadoValores = new ArrayDouble();
+        listadoEtiqueta = new ArrayList<>();
+        listadoUnir = new ArrayOrderedPair();
         registrar[0] = true;
         registrar[2] = true;
         registrar[1] = true;
@@ -605,7 +605,7 @@ listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("MULTIPLICAR", 
               Object RESULT =null;
 		
             addGraph();
-            printString();
+            //printString();//solo pruevas
             restoreString();
             
               CUP$parser$result = parser.getSymbolFactory().newSymbol("b",7, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -699,7 +699,7 @@ listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("MULTIPLICAR", 
               Object RESULT =null;
 		
             addGraph();
-            printString();
+            //printString();//solo pruevas
             restoreString();
             
               CUP$parser$result = parser.getSymbolFactory().newSymbol("p",1, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
