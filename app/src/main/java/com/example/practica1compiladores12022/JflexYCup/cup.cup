@@ -18,29 +18,32 @@ import java.util.ArrayList;
         }
 
         public void syntax_error(Symbol cur_token) {
-        System.out.println("El error es el simbolo: " + sym.terminalNames[cur_token.sym]);
-        System.out.println(String.format("En la posicion: %d, %d", cur_token.left, cur_token.right));
-        ErrorAnalisando nuevo = new ErrorAnalisando(sym.terminalNames[cur_token.sym].toString(), cur_token.left, cur_token.right, "Sintactico", "Se estperaba otra cosa");
-        listError.add(nuevo);
+        //System.out.println("El error es el simbolo: " + sym.terminalNames[cur_token.sym]);
+        //System.out.println(String.format("En la posicion: %d, %d", cur_token.left, cur_token.right));
+        if (registrar[3]){
+            ErrorAnalisando nuevo = new ErrorAnalisando(cur_token.toString(), cur_token.left, cur_token.right, "Sintactico", "Ahi no va "+sym.terminalNames[cur_token.sym]);
+            listError.add(nuevo);
+        }
+        registrar[3]=false;
         }
 
         public void unrecovered_syntax_error(Symbol cur_token) {
             if (cur_token.sym == sym.EOF) {
-             System.out.println("public void unrecoveredsyntax_error");
+             System.out.println("public void unrecoveredsyntax_error!!!!!!!!!!!!!!");
             }
         }
     /**
      * ***CODE*******
      */
     public static ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
-    private ArrayList<ErrorAnalisando> listError = new ArrayList<>();
+    private ArrayList<ErrorAnalisando> listError = new ArrayList<>();//if registra[3] == true
     private ArrayList<Grafica> listadoGrafica = new ArrayList<>();
     private ArrayList<Grafica> listadoGraficaPosible = new ArrayList<>();
     //valors para crear graficas
     //para cualquier grafica
     private ArrayOrderedPair listadoUnir = new ArrayOrderedPair();//if registra[2] == true
     private String titulo;
-    private boolean[] registrar = {true, true, true};//arreglo para indicar que solo una ves analise el etributo
+    private boolean[] registrar = {true, true, true,true};//arreglo para indicar que solo una ves analise el etributo
     private boolean[] tipoGrafica = {false, false};//tipoGrafica[0]=BARRAS , tipoGrafica[1]PIE
     //barras
     private ArrayList<String> listadoEjeX = new ArrayList<>(); //if registra[0] == true
@@ -137,7 +140,20 @@ import java.util.ArrayList;
     }
 
     public ArrayList<ErrorAnalisando> getListError() {
+
         return listError;
+    }
+
+    public static void setListadoReportesMatemtaicos(ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos) {
+        guia.listadoReportesMatemtaicos = listadoReportesMatemtaicos;
+    }
+
+    public void setListError(ArrayList<ErrorAnalisando> listError) {
+        this.listError = listError;
+    }
+
+    public void setListadoGrafica(ArrayList<Grafica> listadoGrafica) {
+        this.listadoGrafica = listadoGrafica;
     }
     /**
      * ***END CODE*******
@@ -169,7 +185,9 @@ start with i;
 /******operaciones matematicas*****/
 j ::= o:a {:
     RESULT = a;
-           :}; /*A QUI ESTA EL TOTAL DE LA OPERACION*/
+           :} /*A QUI ESTA EL TOTAL DE LA OPERACION*/
+           | error {:registrar[3]=true;:}
+           ;
 o ::= o:a SUMAR o:b {: 
                     int numeroUno= Integer.parseInt(a);
                     int numeroDos= Integer.parseInt(b);
@@ -217,7 +235,7 @@ b ::= u b  /*UNIR*/
             //printString();//solo pruevas
             restoreString();
             :}
-| error {:System.out.println("¡¡¡¡¡ERROR!!!!");:}
+| error b {:registrar[3]=true;:}
 ;
 x ::= EJEX DOBLEPUNTO CORCHETE_A  v  CORCHETE_C PUNTOYCOMA {:registrar[0]=false;:}
 ;
@@ -236,7 +254,7 @@ p ::= u p
             //printString();//solo pruevas
             restoreString();
             :}
-| error {:System.out.println("¡¡¡¡¡ERROR!!!!");:}
+| error p {:registrar[3]=true;:}
 ;
 g ::= TIPO DOBLEPUNTO PORCENTAJE:text PUNTOYCOMA  {:tipo=text;:}
 | TIPO DOBLEPUNTO CANTIDAD:text PUNTOYCOMA  {:tipo=text;:}
@@ -256,6 +274,7 @@ u ::= UNIR DOBLEPUNTO CORCHETE_A  z CORCHETE_C PUNTOYCOMA {:registrar[2]=false;:
 ;
 z ::= d COMA z 
 | d
+|error {:registrar[3]=true;:}
 ;
 d ::= LLAVE_A o:a COMA o:b LLAVE_C {:if (registrar[2]){ listadoUnir.add(Double.valueOf(a), Double.valueOf(b));}:}
 ;
@@ -276,12 +295,13 @@ v ::= TEXT:text COMA w {:
             if(registrar[1] && tipoGrafica[0]) {listadoEjeX.add(text.substring(1, text.length()-1));}
             if(registrar[1] && tipoGrafica[1]) {listadoEtiqueta.add(text.substring(1, text.length()-1));}
             :}
+            ||error {:registrar[3]=true;:}
 ;
 /***************INICIO DEL ANALISADOR***************/
 i ::= DEF BARRAS {:tipoGrafica[0]=true;:} LLAVE_A b  i 
 | DEF PIE {:tipoGrafica[1]=true;:} LLAVE_A p  i
 | e 
-| error {:System.out.println("¡¡¡¡¡ERROR!!!!");:}
+| error i {:registrar[3]=true;:}
 ;
 e ::= EJECUTAR PARENTESIS_A TEXT:text PARENTESIS_C PUNTOYCOMA e {:listarGraficas(text.substring(1, text.length()-1));:}
 |

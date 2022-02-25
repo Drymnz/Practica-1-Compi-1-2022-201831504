@@ -2,9 +2,10 @@ package com.example.practica1compiladores12022.Grafica;
 
 import com.example.practica1compiladores12022.Array.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Grafica {
+public class Grafica implements Serializable {
 
     private String titulo;
     private ArrayOrderedPair union;

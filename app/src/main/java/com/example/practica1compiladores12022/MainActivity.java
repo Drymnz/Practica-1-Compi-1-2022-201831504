@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.example.practica1compiladores12022.MovenActivity.MoveWindow;
 
 public class MainActivity extends AppCompatActivity {
-
+    private MoveWindow move = new MoveWindow();
     private EditText ingresoDeDatos;
 
     @Override
@@ -23,11 +23,23 @@ public class MainActivity extends AppCompatActivity {
     }
     public void recogerText(View view){
         if (!ingresoDeDatos.getText().toString().isEmpty()) {
-            Intent next = new Intent(this,MainActivity_Grafica_View.class);
-            next.putExtra("text",ingresoDeDatos.getText().toString());
-            startActivity(next);
+            if(move.MovenAnalisador(ingresoDeDatos.getText().toString())){
+                startGraph();
+            }else{
+                startReport();
+            }
         }else{
             Toast.makeText(this,"Por favor ingrese un texto",Toast.LENGTH_LONG);
         }
+    }
+    private void startReport(){
+        Intent go = new Intent(this,MainActivity_Reportes_Error.class);
+        startActivity(go);
+    }
+
+    private void startGraph(){
+        Intent next = new Intent(this,MainActivity_Grafica_View.class);
+        next.putExtra("text",ingresoDeDatos.getText().toString());
+        startActivity(next);
     }
 }

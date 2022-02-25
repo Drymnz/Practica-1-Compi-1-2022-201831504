@@ -38,24 +38,17 @@ public class MainActivity_Grafica_View extends AppCompatActivity implements Adap
         //asignar listview
         opcionesGrafica =  (ListView) findViewById(R.id.listGraficaOpcion);
         opcionesGrafica.setOnItemClickListener(this);
-        listarGraficas(getIntent().getStringExtra("text").toString());
+        if(move.MovenAnalisador(getIntent().getStringExtra("text").toString())){
+            if (move.getConvertir().getListadoNombre()!=null) listarGraficas();
+        }
         //boton de atras en la bara
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     //metodo de listar graficas disponibles para ejecutar
-    private void listarGraficas(String text){
-        if (!text.isEmpty()){
-            if (move.MovenAnalisador(text)){//analisar el texto si no hay error
-                if (move.getConvertir().getListadoNombre()!=null){
-                    //listar nombres de graficas disponibles
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,move.getConvertir().getListadoNombre());
-                    opcionesGrafica.setAdapter(adapter);
-                }
-            }else{
-                /*IR A REPORTES ERROR*/
-                //startActivity(new Intent(this,MainActivity.class));
-            }
-        }
+    private void listarGraficas(){
+        //listar nombres de graficas disponibles
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,move.getConvertir().getListadoNombre());
+        opcionesGrafica.setAdapter(adapter);
     }
 
     @Override
@@ -88,7 +81,6 @@ public class MainActivity_Grafica_View extends AppCompatActivity implements Adap
     //Ir a reprotes
     public void report(View view){
         Intent go = new Intent(this,MainActivity_Reportes.class);
-       // ReportesOperadoresMatematicos a = move.getSintac().getListadoReportesMatemtaicos().get(0);
         go.putExtra("listado_reportes_mate",move.getSintac().getListadoReportesMatemtaicos());
         go.putExtra("num_list_bar",(move.getLexema().getContadorBarra() + ""));
         go.putExtra("num_list_pie",(move.getLexema().getContadorPie()+""));

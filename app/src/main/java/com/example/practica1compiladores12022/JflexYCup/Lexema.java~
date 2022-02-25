@@ -332,7 +332,7 @@ public class Lexema implements java_cup.runtime.Scanner {
     private int contadorBarra = 0;
     private int contadorPie= 0;
     private ArrayList<ErrorAnalisando> listError = new ArrayList<>();
-
+_scanner
     //get
     public ArrayList<ErrorAnalisando> getListError() {
         return listError;

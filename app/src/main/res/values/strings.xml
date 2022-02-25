@@ -2,7 +2,7 @@
     <string name="app_name">Practica 1 Compiladores 1 2022</string>
     <string name="mensaje_one">Bienvenido a la app</string>
     <string name="ingreso_tex">por favor ingrese el texto aqui</string>
-    <string name="analisar">Analisar</string>
+    <string name="analisar">Analizar</string>
     <string name="btn_atras">Atras</string>
     <string name="btn_reportes">Reportes</string>
     <string name="titulo_reportes_mate">Reporte de ocurrencias de operadores matematicos</string>

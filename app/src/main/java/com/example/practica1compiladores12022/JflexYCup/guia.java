@@ -13,14 +13,14 @@ public class guia {
      * ***CODE*******
      */
     public static ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
-    private ArrayList<ErrorAnalisando> listError = new ArrayList<>();
+    private ArrayList<ErrorAnalisando> listError = new ArrayList<>();//if registra[3] == true
     private ArrayList<Grafica> listadoGrafica = new ArrayList<>();
     private ArrayList<Grafica> listadoGraficaPosible = new ArrayList<>();
     //valors para crear graficas
     //para cualquier grafica
     private ArrayOrderedPair listadoUnir = new ArrayOrderedPair();//if registra[2] == true
     private String titulo;
-    private boolean[] registrar = {true, true, true};//arreglo para indicar que solo una ves analise el etributo
+    private boolean[] registrar = {true, true, true,true};//arreglo para indicar que solo una ves analise el etributo
     private boolean[] tipoGrafica = {false, false};//tipoGrafica[0]=BARRAS , tipoGrafica[1]PIE
     //barras
     private ArrayList<String> listadoEjeX = new ArrayList<>(); //if registra[0] == true
@@ -119,6 +119,18 @@ public class guia {
     public ArrayList<ErrorAnalisando> getListError() {
 
         return listError;
+    }
+
+    public static void setListadoReportesMatemtaicos(ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos) {
+        guia.listadoReportesMatemtaicos = listadoReportesMatemtaicos;
+    }
+
+    public void setListError(ArrayList<ErrorAnalisando> listError) {
+        this.listError = listError;
+    }
+
+    public void setListadoGrafica(ArrayList<Grafica> listadoGrafica) {
+        this.listadoGrafica = listadoGrafica;
     }
     /**
      * ***END CODE*******

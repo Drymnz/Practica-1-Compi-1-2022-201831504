@@ -7,13 +7,14 @@ package com.example.practica1compiladores12022.Grafica;
 import com.example.practica1compiladores12022.Array.ArrayDouble;
 import com.example.practica1compiladores12022.Array.ArrayOrderedPair;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author drymnz
  */
-public class Pie extends Grafica{
+public class Pie extends Grafica implements Serializable {
     public enum posible {CANTIDAD,PORCENTAJE};
     private posible tipo;
     private double total;

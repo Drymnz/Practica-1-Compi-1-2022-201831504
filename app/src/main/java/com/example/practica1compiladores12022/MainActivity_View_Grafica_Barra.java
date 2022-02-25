@@ -11,10 +11,11 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
 
 public class MainActivity_View_Grafica_Barra extends AppCompatActivity {
-private BarChart barChart;
-private TextView titulo;
+    private BarChart barChart;
+    private TextView titulo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

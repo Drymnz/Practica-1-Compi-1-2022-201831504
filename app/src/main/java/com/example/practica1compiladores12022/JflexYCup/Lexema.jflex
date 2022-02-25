@@ -17,7 +17,7 @@ import java_cup.runtime.*;
     private int contadorBarra = 0;
     private int contadorPie= 0;
     private ArrayList<ErrorAnalisando> listError = new ArrayList<>();
-_scanner
+
     //get
     public ArrayList<ErrorAnalisando> getListError() {
         return listError;
@@ -39,6 +39,9 @@ _scanner
     public void errorEncontradoLexico() {
         ErrorAnalisando nuevo = new ErrorAnalisando(yytext(), yyline, yycolumn, "Léxico", "Simbolo no existe en el lenguaje");
         listError.add(nuevo);
+    }
+    public void setListError(ArrayList<ErrorAnalisando> listError){
+        this.listError = listError;
     }
 %}
 ENTERO =[0-9]+

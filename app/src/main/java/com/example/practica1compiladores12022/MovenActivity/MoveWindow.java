@@ -6,20 +6,20 @@ import com.example.practica1compiladores12022.Grafica.ConvertidorGraficaChart;
 import com.example.practica1compiladores12022.JflexYCup.ErrorAnalisando;
 import com.example.practica1compiladores12022.JflexYCup.Lexema;
 import com.example.practica1compiladores12022.JflexYCup.parser;
-import com.example.practica1compiladores12022.MainActivity;
+
 
 import java.io.Reader;
+import java.io.Serializable;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class MoveWindow {
+
+public class MoveWindow implements Serializable {
 
     private Lexema lexema;
     private parser sintac;
-    private ArrayList<ErrorAnalisando> listError;
-    public  ConvertidorGraficaChart convertir = new ConvertidorGraficaChart();
+    public static ArrayList<ErrorAnalisando> listError = new ArrayList<>();
+    private  ConvertidorGraficaChart convertir = new ConvertidorGraficaChart();
 /*
 metodo resibe un String para analisar sintacticamente
 * */
@@ -27,20 +27,18 @@ metodo resibe un String para analisar sintacticamente
         if (!text.isEmpty()){
             Reader reader = new StringReader(text);
             lexema = new Lexema(reader);
-            listError = lexema.getListError();
             sintac = new parser(lexema);
+            lexema.setListError(listError);
+            sintac.setListError(listError);
             try {
                 sintac.parse();
+                if((listError!=null && !listError.isEmpty())) return false;
                 if (sintac.getListadoGrafica()!=null && !sintac.getListadoGrafica().isEmpty()){
                     convertir.listar(sintac.getListadoGrafica());
-                }
-                if (!sintac.getListError().isEmpty()){
-                    for (ErrorAnalisando error : sintac.getListError()){
-                        listError.add(error);
-                    }
+                    return true;
                 }
             } catch (Exception ex) {
-                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println(ex.getMessage());
                 ex.printStackTrace();
                 return false;
@@ -50,9 +48,6 @@ metodo resibe un String para analisar sintacticamente
         return false;
     }
 
-    public ArrayList<ErrorAnalisando> getListError() {
-        return listError;
-    }
 
     public Lexema getLexema() {
         return lexema;
@@ -64,5 +59,9 @@ metodo resibe un String para analisar sintacticamente
 
     public ConvertidorGraficaChart getConvertir() {
         return convertir;
+    }
+
+    public ArrayList<ErrorAnalisando> getListError() {
+        return listError;
     }
 }
