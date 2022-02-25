@@ -4,11 +4,12 @@
  */
 package com.example.practica1compiladores12022.Resportes;
 
+import java.io.Serializable;
+
 /**
- *
  * @author drymnz
  */
-public class ErrorAnalisando {
+public class ErrorAnalisando implements Serializable {
 
     private String lexema;
     private int linea;

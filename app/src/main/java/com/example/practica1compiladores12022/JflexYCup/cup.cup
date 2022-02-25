@@ -32,7 +32,7 @@ import java.util.ArrayList;
     /**
      * ***CODE*******
      */
-    private ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
+    public static ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
     private ArrayList<ErrorAnalisando> listError = new ArrayList<>();
     private ArrayList<Grafica> listadoGrafica = new ArrayList<>();
     private ArrayList<Grafica> listadoGraficaPosible = new ArrayList<>();
@@ -171,32 +171,35 @@ j ::= o:a {:
     RESULT = a;
            :}; /*A QUI ESTA EL TOTAL DE LA OPERACION*/
 o ::= o:a SUMAR o:b {: 
-                    int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
-                    int r = val1+val2;
-                    RESULT = String.valueOf(r); 
- listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("SUMAR", aleft, aright, "val1 + val2 "));
+                    int numeroUno= Integer.parseInt(a);
+                    int numeroDos= Integer.parseInt(b);
+                    int resultado = numeroUno-numeroDos;
+                    RESULT = String.valueOf(resultado);
+ listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("SUMAR", aleft, aright, numeroUno+"+"+numeroDos));
                     :}
 
-|  o:a RESTAR o:b {: int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
-                    int r = val1-val2;
-                    RESULT = String.valueOf(r); 
- listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("RESTAR", aleft, aright, "val1 - val2 "));
+|  o:a RESTAR o:b {:
+                int numeroUno= Integer.parseInt(a);
+                int numeroDos= Integer.parseInt(b);
+                int resultado = numeroUno-numeroDos;
+                RESULT = String.valueOf(resultado);
+ listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("RESTAR", aleft, aright, numeroUno+"-"+numeroDos));
                     :}
 
-|  o:a DIVIDIR o:b {: int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
-                    int r = val1/val2;
-                    RESULT = String.valueOf(r); 
-listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("DIVIDIR", aleft, aright, "val1 / val2 "));
+|  o:a DIVIDIR o:b {:
+                    int numeroUno= Integer.parseInt(a);
+                    int numeroDos= Integer.parseInt(b);
+                    int resultado = numeroUno/numeroDos;
+                    RESULT = String.valueOf(resultado);
+listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("DIVIDIR", aleft, aright, numeroUno+"/"+numeroDos));
                     :}
 
-|  o:a MULTIPLICAR o:b {: int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
-                    int r = val1*val2;
-                    RESULT = String.valueOf(r); 
-listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("MULTIPLICAR", aleft, aright, "val1 * val2 "));
+|  o:a MULTIPLICAR o:b {:
+                    int numeroUno= Integer.parseInt(a);
+                    int numeroDos= Integer.parseInt(b);
+                    int resultado = numeroUno*numeroDos;
+                    RESULT = String.valueOf(resultado);
+listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("MULTIPLICAR", aleft, aright, numeroUno+"*"+numeroDos));
                     :}
 
 | PARENTESIS_A o:a {: RESULT = a; :} PARENTESIS_C 

@@ -12,7 +12,7 @@ public class guia {
     /**
      * ***CODE*******
      */
-    private ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
+    public static ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
     private ArrayList<ErrorAnalisando> listError = new ArrayList<>();
     private ArrayList<Grafica> listadoGrafica = new ArrayList<>();
     private ArrayList<Grafica> listadoGraficaPosible = new ArrayList<>();

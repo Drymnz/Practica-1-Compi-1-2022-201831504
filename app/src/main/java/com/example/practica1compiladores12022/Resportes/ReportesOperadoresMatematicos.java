@@ -4,11 +4,12 @@
  */
 package com.example.practica1compiladores12022.Resportes;
 
+import java.io.Serializable;
+
 /**
- *
  * @author drymnz
  */
-public class ReportesOperadoresMatematicos {
+public class ReportesOperadoresMatematicos implements Serializable {
     private String operador;
     private int linea;
     private int columna;

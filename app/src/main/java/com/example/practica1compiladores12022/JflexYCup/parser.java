@@ -292,7 +292,7 @@ public class parser extends java_cup.runtime.lr_parser {
     /**
      * ***CODE*******
      */
-    private ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
+    public static ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos = new ArrayList<>();
     private ArrayList<ErrorAnalisando> listError = new ArrayList<>();
     private ArrayList<Grafica> listadoGrafica = new ArrayList<>();
     private ArrayList<Grafica> listadoGraficaPosible = new ArrayList<>();
@@ -467,11 +467,11 @@ class CUP$parser$actions {
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
-                    int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
-                    int r = val1+val2;
-                    RESULT = String.valueOf(r); 
- listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("SUMAR", aleft, aright, "val1 + val2 "));
+                    int numeroUno= Integer.parseInt(a);
+                    int numeroDos= Integer.parseInt(b);
+                    int resultado = numeroUno-numeroDos;
+                    RESULT = String.valueOf(resultado);
+ listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("SUMAR", aleft, aright, numeroUno+"+"+numeroDos));
                     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("o",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -487,11 +487,12 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
-                    int r = val1-val2;
-                    RESULT = String.valueOf(r); 
- listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("RESTAR", aleft, aright, "val1 - val2 "));
+		
+                int numeroUno= Integer.parseInt(a);
+                int numeroDos= Integer.parseInt(b);
+                int resultado = numeroUno-numeroDos;
+                RESULT = String.valueOf(resultado);
+ listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("RESTAR", aleft, aright, numeroUno+"-"+numeroDos));
                     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("o",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -507,11 +508,12 @@ class CUP$parser$actions {
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
-                    int r = val1/val2;
-                    RESULT = String.valueOf(r); 
-listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("DIVIDIR", aleft, aright, "val1 / val2 "));
+		
+                    int numeroUno= Integer.parseInt(a);
+                    int numeroDos= Integer.parseInt(b);
+                    int resultado = numeroUno/numeroDos;
+                    RESULT = String.valueOf(resultado);
+listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("DIVIDIR", aleft, aright, numeroUno+"/"+numeroDos));
                     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("o",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -527,11 +529,12 @@ listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("DIVIDIR", alef
 		int bleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 int val1= Integer.parseInt(a);
-                    int val2= Integer.parseInt(b);
-                    int r = val1*val2;
-                    RESULT = String.valueOf(r); 
-listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("MULTIPLICAR", aleft, aright, "val1 * val2 "));
+		
+                    int numeroUno= Integer.parseInt(a);
+                    int numeroDos= Integer.parseInt(b);
+                    int resultado = numeroUno*numeroDos;
+                    RESULT = String.valueOf(resultado);
+listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("MULTIPLICAR", aleft, aright, numeroUno+"*"+numeroDos));
                     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("o",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
