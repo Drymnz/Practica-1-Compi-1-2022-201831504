@@ -64,7 +64,12 @@ public class MainActivity_Grafica_View extends AppCompatActivity implements Adap
         }
         if (move.getSintac().getListadoGrafica().get(i) instanceof Pie){
             Pie ejecutar = (Pie) move.getSintac().getListadoGrafica().get(i);
-            //pie = (move.getConvertir().convertirBarra(ejecutar));
+            pie = (move.getConvertir().convertirPie(ejecutar));
+            if (ejecutar!=null){
+                Intent next = new Intent(this,MainActivity_View_Grafica_Pie.class);
+                next.putExtra("titulo",move.getConvertir().getListadoNombre()[i]);
+                startActivity(next);
+            }
         }
     }
 //para el boton de atras de la app
