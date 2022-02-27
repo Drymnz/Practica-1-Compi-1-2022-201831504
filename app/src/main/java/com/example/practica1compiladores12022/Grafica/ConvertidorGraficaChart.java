@@ -51,10 +51,13 @@ private String[] listadoNombre ;
                 float cantidaIngresada = (float) valor(pie.getListDouble(), valorX);
                 String etiqueta = caracter(pie.getListadoString(), valorY);
                 suma += cantidaIngresada;//esto para el extra
-                if(pie.getTotal() != 0) cantidaIngresada /= pie.getTotal();
+                if(pie.getTotal() != 0){
+                    cantidaIngresada /= pie.getTotal();
+                    cantidaIngresada *= 100;
+                }
                 switch (pie.getTipo()){
                     case CANTIDAD:
-                        PieEntry add3 = new PieEntry(cantidaIngresada,etiqueta );
+                        PieEntry add3 = new PieEntry(cantidaIngresada,etiqueta);
                         detallesPies.add(add3);
                         break;
                     case PORCENTAJE:
@@ -65,9 +68,8 @@ private String[] listadoNombre ;
                         break;
                 }
             }
-
             if (suma!=pie.getTotal() && suma < pie.getTotal() &&!pie.getExtra().isEmpty()) {
-                float total = (float) ((pie.getTotal()-suma)/ pie.getTotal());
+                float total = (float) ((pie.getTotal()-suma)/ pie.getTotal()) *100;
                 switch (pie.getTipo()) {
                     case PORCENTAJE:
                         PieEntry add = new PieEntry(total,total+"%");
@@ -83,7 +85,7 @@ private String[] listadoNombre ;
             }
             PieDataSet add = new PieDataSet(detallesPies,pie.getTitulo());
             add.setColors(ColorTemplate.COLORFUL_COLORS);
-            add.setDrawValues(true);
+            add.setDrawValues(false);
             //add.setLabel("hola mundo");
             return add;
         }
