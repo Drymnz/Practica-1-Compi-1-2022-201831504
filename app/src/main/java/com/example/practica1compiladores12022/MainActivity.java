@@ -23,23 +23,28 @@ public class MainActivity extends AppCompatActivity {
     }
     public void recogerText(View view){
         if (!ingresoDeDatos.getText().toString().isEmpty()) {
-            if(move.MovenAnalisador(ingresoDeDatos.getText().toString())){
-                startGraph();
+            if(move.MovenAnalisador(ingresoDeDatos.getText().toString())){/// verifico si cumple todo la sintacsis
+                startGraph();//si todo esta bien que muestre el listado de graficas dectetadas
             }else{
-                startReport();
+                startReport();// sino muestra los errores lexicos y sintacticos
             }
         }else{
             Toast.makeText(this,"Por favor ingrese un texto",Toast.LENGTH_LONG);
         }
     }
+    //lo manda al a la ventana de reportes
     private void startReport(){
         Intent go = new Intent(this,MainActivity_Reportes_Error.class);
         startActivity(go);
     }
-
+    //metodo para ir al listado de graficas para graficar en el programa
     private void startGraph(){
         Intent next = new Intent(this,MainActivity_Grafica_View.class);
         next.putExtra("text",ingresoDeDatos.getText().toString());
         startActivity(next);
+    }
+
+    public void limpiear(View view){
+        ingresoDeDatos.setText("");
     }
 }

@@ -9,12 +9,14 @@
 
     <TextView
         android:id="@+id/mostarText"
-        android:layout_width="375dp"
-        android:layout_height="37dp"
+        android:layout_width="198dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="60dp"
         android:hint="@string/mensaje_one"
         android:text="@string/mensaje_one"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,5 +45,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mostarText"
         tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/button_limpiar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="limpiear"
+        android:text="@string/btn_limpiar"
+        app:layout_constraintBottom_toTopOf="@+id/ingresoDatos"
+        app:layout_constraintStart_toEndOf="@+id/mostarText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

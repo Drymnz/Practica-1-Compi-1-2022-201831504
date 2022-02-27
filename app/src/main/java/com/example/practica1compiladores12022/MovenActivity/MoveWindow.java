@@ -24,6 +24,7 @@ public class MoveWindow implements Serializable {
 metodo resibe un String para analisar sintacticamente
 * */
     public boolean MovenAnalisador (@NonNull String text){
+        listError.clear();
         if (!text.isEmpty()){
             Reader reader = new StringReader(text);
             lexema = new Lexema(reader);

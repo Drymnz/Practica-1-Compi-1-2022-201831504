@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 public class MainActivity_Reportes extends AppCompatActivity {
 
-    private TableLayout tableReporA;//reprotes arimetricos
-    private TextView numBar;
-    private TextView numPie;
-    private ArrayList<ReportesOperadoresMatematicos> listMate;
+    private TableLayout tableReporA;
+    private TextView numBar;//mostrar el numero de baras
+    private TextView numPie;//mostrar el numero de pie
+    private ArrayList<ReportesOperadoresMatematicos> listMate;//reprotes arimetricos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,12 @@ public class MainActivity_Reportes extends AppCompatActivity {
         numPie = (TextView) findViewById(R.id.num_pie_report);
         numPie.setText(getIntent().getStringExtra("num_list_pie").toString());
         numBar.setText(getIntent().getStringExtra("num_list_bar").toString());
+        listar();
+        //boton de regresar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+    //metodo para listar los reportes
+    private  void  listar(){
         if (listMate != null) {
             for (ReportesOperadoresMatematicos report : listMate) {
                 TableRow fila = new TableRow(this);
@@ -48,9 +54,6 @@ public class MainActivity_Reportes extends AppCompatActivity {
                 tableReporA.addView(fila);
             }
         }
-
-        //boton de regresar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

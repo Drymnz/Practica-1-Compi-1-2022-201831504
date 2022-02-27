@@ -15,17 +15,11 @@ import android.widget.TextView;
 import com.example.practica1compiladores12022.Grafica.Barras;
 import com.example.practica1compiladores12022.Grafica.Pie;
 import com.example.practica1compiladores12022.MovenActivity.MoveWindow;
-import com.example.practica1compiladores12022.Resportes.ReportesOperadoresMatematicos;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.PieDataSet;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity_Grafica_View extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
     private MoveWindow move = new MoveWindow();
     private ListView opcionesGrafica;
     public static BarDataSet barras = null;
@@ -50,7 +44,7 @@ public class MainActivity_Grafica_View extends AppCompatActivity implements Adap
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,move.getConvertir().getListadoNombre());
         opcionesGrafica.setAdapter(adapter);
     }
-
+//metodo para ver que grafica debe de grficar, al precionar un titulo de la grafica
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         if (move.getSintac().getListadoGrafica().get(i) instanceof Barras){
@@ -72,7 +66,7 @@ public class MainActivity_Grafica_View extends AppCompatActivity implements Adap
             }
         }
     }
-//para el boton de atras de la app
+    //para el boton de atras de la app
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -83,7 +77,7 @@ public class MainActivity_Grafica_View extends AppCompatActivity implements Adap
         return super.onOptionsItemSelected(item);
     }
 
-    //Ir a reprotes
+    //Ir a reprotes del listado de matematicas y la cantidad de graficas dectectadas
     public void report(View view){
         Intent go = new Intent(this,MainActivity_Reportes.class);
         go.putExtra("listado_reportes_mate",move.getSintac().getListadoReportesMatemtaicos());

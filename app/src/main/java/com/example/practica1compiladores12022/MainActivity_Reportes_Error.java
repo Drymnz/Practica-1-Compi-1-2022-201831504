@@ -19,7 +19,6 @@ public class MainActivity_Reportes_Error extends AppCompatActivity {
 
     private TableLayout tableReporError;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +29,7 @@ public class MainActivity_Reportes_Error extends AppCompatActivity {
         //boton de regresar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+    //imprimir el listdo de erroes
     private void print(ArrayList<ErrorAnalisando> print){
         if (print != null) {
             for (ErrorAnalisando error : print) {
