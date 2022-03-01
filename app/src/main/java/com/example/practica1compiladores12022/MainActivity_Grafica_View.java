@@ -30,14 +30,13 @@ public class MainActivity_Grafica_View extends AppCompatActivity implements Adap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_grafica_view);
-        //asignar listview
+        //asignar listview son los listdo de la graficas
         opcionesGrafica =  (ListView) findViewById(R.id.listGraficaOpcion);
         opcionesGrafica.setOnItemClickListener(this);
         if(move.MovenAnalisador(getIntent().getStringExtra("text").toString())){
             if (move.getConvertir().getListadoNombre()!=null) listarGraficas();
         }
-        //boton de atras en la bara
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//boton de atras en la bara
     }
     //metodo de listar graficas disponibles para ejecutar
     private void listarGraficas(){

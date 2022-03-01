@@ -5,8 +5,8 @@ import java_cup.runtime.*;
 import java.util.ArrayList;
 
 import com.example.practica1compiladores12022.Array.*;
+import com.example.practica1compiladores12022.Resportes.*;
 import com.example.practica1compiladores12022.Grafica.*;
-import com.example.practica1compiladores12022.Resportes.ReportesOperadoresMatematicos;
 
 import java.util.ArrayList;
 
@@ -72,13 +72,23 @@ import java.util.ArrayList;
                     add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 1:
+                    if(cantidadPorcentaje == 0 && total>0) {
+                    ErrorAnalisando nuevo = new ErrorAnalisando("Considerar,parafo4,linea2-3", 0, 0, "Sintactico", "tipo grafica procenaje no debia tener total");
+                    listError.add(nuevo);
+                    }else{
                     add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
+                    }
                     break;
                 case 2:
                     add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, extra, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 3:
+                    if(cantidadPorcentaje == 0 && total>0) {
+                        ErrorAnalisando nuevo = new ErrorAnalisando("Considerar,parafo4,linea2-3", 0, 0, "Sintactico", "tipo grafica procenaje no debia tener total");
+                        listError.add(nuevo);
+                    }else{
                     add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, extra +"", titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
+                    }
                     break;
                 default:
                     System.out.println("NO SE ENCONTRO NADA PARA AÑADIR AL LISTADO GRAFICA");
@@ -144,9 +154,6 @@ import java.util.ArrayList;
         return listError;
     }
 
-    public static void setListadoReportesMatemtaicos(ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos) {
-        guia.listadoReportesMatemtaicos = listadoReportesMatemtaicos;
-    }
 
     public void setListError(ArrayList<ErrorAnalisando> listError) {
         this.listError = listError;
@@ -300,7 +307,7 @@ v ::= TEXT:text COMA w {:
 /***************INICIO DEL ANALISADOR***************/
 i ::= DEF BARRAS {:tipoGrafica[0]=true;:} LLAVE_A b  i 
 | DEF PIE {:tipoGrafica[1]=true;:} LLAVE_A p  i
-| e 
+| e  //con esto defino que puede venir 0 definiciones de graficas o n definiciones
 | error i {:registrar[3]=true;:}
 ;
 e ::= EJECUTAR PARENTESIS_A TEXT:text PARENTESIS_C PUNTOYCOMA e {:listarGraficas(text.substring(1, text.length()-1));:}

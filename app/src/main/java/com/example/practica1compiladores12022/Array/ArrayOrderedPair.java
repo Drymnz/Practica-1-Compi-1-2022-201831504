@@ -20,7 +20,7 @@ public class ArrayOrderedPair {
     public ArrayOrderedPair(double x, double y) {
         add(x, y);
     }
-
+    // aqui esta creado el apr ordenado que se agurada
     public void add(double x, double y) {
         if (list == null) {
             list = new double[this.x][this.y];

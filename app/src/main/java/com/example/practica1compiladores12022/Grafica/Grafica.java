@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Grafica implements Serializable {
 
     private String titulo;
-    private ArrayOrderedPair union;
+    private ArrayOrderedPair union;// el par ordenado que indicara que puntos de los listados se grafica
     private ArrayDouble listDouble;
     private ArrayList<String> listadoString;
 

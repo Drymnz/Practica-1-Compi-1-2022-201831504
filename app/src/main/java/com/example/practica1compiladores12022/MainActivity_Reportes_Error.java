@@ -9,9 +9,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.example.practica1compiladores12022.JflexYCup.ErrorAnalisando;
 import com.example.practica1compiladores12022.MovenActivity.MoveWindow;
-import com.example.practica1compiladores12022.Resportes.ReportesOperadoresMatematicos;
+import com.example.practica1compiladores12022.Resportes.ErrorAnalisando;
 
 import java.util.ArrayList;
 

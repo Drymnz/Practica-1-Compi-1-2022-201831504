@@ -12,9 +12,7 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.practica1compiladores12022.Grafica.Barras
-import com.example.practica1compiladores12022.Grafica.ConvertidorGrafica
-import com.example.practica1compiladores12022.Grafica.Pie
+import com.example.practica1compiladores12022.Grafica.*
 import com.example.practica1compiladores12022.MovenActivity.MoveWindow
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
@@ -26,14 +24,15 @@ import com.github.mikephil.charting.data.PieDataSet
 class MainActivity_View_Graphics : AppCompatActivity() {
 
     private var move:MoveWindow = MoveWindow()
-    private lateinit var listBar:ListView
-    private lateinit var listPie:ListView
+    private lateinit var listBar:ListView//mostrar listado para la grafica de barras
+    private lateinit var listPie:ListView//mostrar listado para la grafica de pie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_view_graphics)
         listBar = findViewById<ListView>(R.id.listGraficaBar)
         listPie = findViewById<ListView>(R.id.listGraficaPie)
+        move = MoveWindow()
         if(move.MovenAnalisador(intent.getStringExtra("text").toString())){
             if(move.convertir.listadoNombre!=null)
                 listart()
@@ -50,7 +49,6 @@ class MainActivity_View_Graphics : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
     private fun listart(){
-        var list:ArrayList<GraficaChart>  = ArrayList()
         var listBar:ArrayList<BarData> = ArrayList()
         var listTiulobar:ArrayList<String> = ArrayList()
         var listTiulopiew:ArrayList<String> = ArrayList()
@@ -60,18 +58,14 @@ class MainActivity_View_Graphics : AppCompatActivity() {
             if(i is Barras ){
                 var add:BarDataSet = (conver.convertidor(i))
                 var dasd:BarData = BarData(add)
-                var addFinal:GraficaChart = GraficaChart(dasd,i.titulo)
                 listBar.add(dasd)
                 listTiulobar.add(i.titulo)
-                list.add(addFinal)
             }
             if(i is Pie ){
                 var add:PieDataSet = (conver.convertirPie(i))
                 var dasd:PieData = PieData(add)
-                var addFinal:GraficaChart = GraficaChart(dasd,i.titulo)
                 listPie.add(dasd)
                 listTiulopiew.add(i.titulo)
-                list.add(addFinal)
             }
         }
         var adaptorBar:MyAdapter = MyAdapter(this,listBar,listTiulobar)
@@ -80,34 +74,7 @@ class MainActivity_View_Graphics : AppCompatActivity() {
         this.listPie.setAdapter(adaptorPie)
     }
 
-class MyAdapter(private var context: Activity, private val array:List<BarData>,private val listado:ArrayList<String>) : ArrayAdapter<BarData> (context, R.layout.listview_barchart,array){
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var inflater : LayoutInflater = LayoutInflater.from(context)
-        var view : View = inflater.inflate(R.layout.listview_barchart, null)
-
-        var titulo:TextView = view.findViewById(R.id.titulo_barchart)
-        var graficaDetalles:BarData = array.get(position)
-        var grafica:BarChart = view.findViewById(R.id.grafica_bar)
-        grafica.setData(graficaDetalles)
-        titulo.setText(listado.get(position))
-        return view
-    }
-}
-
-    class MyAdapterPie(private var context: Activity, private val array:List<PieData>,private val listado:ArrayList<String>) : ArrayAdapter<PieData> (context, R.layout.listview_piechart,array){
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var inflater : LayoutInflater = LayoutInflater.from(context)
-            var view : View = inflater.inflate(R.layout.listview_piechart, null)
-
-            var titulo:TextView = view.findViewById(R.id.titulo_pie)
-            var graficaDetalles:PieData = array.get(position)
-            var grafica:PieChart = view.findViewById(R.id.ParChart)
-            grafica.setData(graficaDetalles)
-            titulo.setText(listado.get(position))
-            return view
-        }
-    }
-
+    //para poder retroseder
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             android.R.id.home ->{

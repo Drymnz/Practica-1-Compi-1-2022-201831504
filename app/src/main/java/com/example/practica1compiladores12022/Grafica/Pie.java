@@ -26,31 +26,36 @@ public class Pie extends Grafica implements Serializable {
         this.tipo = tipo;
         this.total = total;
         this.extra = extra;
+        tipo();
     }
 
     public Pie(posible tipo, double total, String titulo, ArrayOrderedPair union, ArrayDouble listDouble, ArrayList<String> listadoString) {
         super(titulo, union, listDouble, listadoString);
         this.tipo = tipo;
         this.total = total;
+        tipo();
     }
 
     public Pie(posible tipo, String extra, String titulo, ArrayOrderedPair union, ArrayDouble listDouble, ArrayList<String> listadoString) {
         super(titulo, union, listDouble, listadoString);
         this.tipo = tipo;
         this.extra = extra;
+        tipo();
+    }
+    public Pie(posible tipo, String titulo, ArrayOrderedPair union, ArrayDouble listDouble, ArrayList<String> listadoString) {
+        super(titulo, union, listDouble, listadoString);
+        this.tipo = tipo;
+        tipo();
+    }
+    private void tipo(){
         switch (tipo){
             case PORCENTAJE:
                 this.total =  GRADO;
                 break;
             case CANTIDAD:
-                this.total =  (sumaEjeXUnir()<360)? 360 : 0;
+                if(!extra.isEmpty())this.total =  (sumaEjeXUnir()>this.total)? 360 : this.total;
                 break;
         }
-    }
-
-    public Pie(posible tipo, String titulo, ArrayOrderedPair union, ArrayDouble listDouble, ArrayList<String> listadoString) {
-        super(titulo, union, listDouble, listadoString);
-        this.tipo = tipo;
     }
     private double sumaEjeXUnir(){
         double suma = 0 ;

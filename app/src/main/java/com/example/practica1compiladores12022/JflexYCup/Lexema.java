@@ -4,7 +4,7 @@
 
 /*primer seccion: codigo de usuario*/
 package com.example.practica1compiladores12022.JflexYCup;
-
+import com.example.practica1compiladores12022.Resportes.ErrorAnalisando;
 import java.util.ArrayList;
 import java_cup.runtime.*;
 

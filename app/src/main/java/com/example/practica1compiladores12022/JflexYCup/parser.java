@@ -8,8 +8,8 @@ package com.example.practica1compiladores12022.JflexYCup;
 import java_cup.runtime.*;
 import java.util.ArrayList;
 import com.example.practica1compiladores12022.Array.*;
+import com.example.practica1compiladores12022.Resportes.*;
 import com.example.practica1compiladores12022.Grafica.*;
-import com.example.practica1compiladores12022.Resportes.ReportesOperadoresMatematicos;
 import java.util.ArrayList;
 import java_cup.runtime.XMLElement;
 
@@ -344,13 +344,23 @@ public class parser extends java_cup.runtime.lr_parser {
                     add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 1:
+                    if(cantidadPorcentaje == 0 && total>0) {
+                    ErrorAnalisando nuevo = new ErrorAnalisando("Considerar,parafo4,linea2-3", 0, 0, "Sintactico", "tipo grafica procenaje no debia tener total");
+                    listError.add(nuevo);
+                    }else{
                     add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
+                    }
                     break;
                 case 2:
                     add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, extra, titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
                     break;
                 case 3:
+                    if(cantidadPorcentaje == 0 && total>0) {
+                        ErrorAnalisando nuevo = new ErrorAnalisando("Considerar,parafo4,linea2-3", 0, 0, "Sintactico", "tipo grafica procenaje no debia tener total");
+                        listError.add(nuevo);
+                    }else{
                     add = new Pie((cantidadPorcentaje == 0) ? Pie.posible.PORCENTAJE : Pie.posible.CANTIDAD, total, extra +"", titulo +"", listadoUnir, listadoValores, listadoEtiqueta);
+                    }
                     break;
                 default:
                     System.out.println("NO SE ENCONTRO NADA PARA AÑADIR AL LISTADO GRAFICA");
@@ -416,9 +426,6 @@ public class parser extends java_cup.runtime.lr_parser {
         return listError;
     }
 
-    public static void setListadoReportesMatemtaicos(ArrayList<ReportesOperadoresMatematicos> listadoReportesMatemtaicos) {
-        guia.listadoReportesMatemtaicos = listadoReportesMatemtaicos;
-    }
 
     public void setListError(ArrayList<ErrorAnalisando> listError) {
         this.listError = listError;

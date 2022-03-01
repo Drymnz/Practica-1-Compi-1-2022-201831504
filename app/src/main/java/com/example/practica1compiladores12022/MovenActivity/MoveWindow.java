@@ -3,9 +3,9 @@ package com.example.practica1compiladores12022.MovenActivity;
 import androidx.annotation.NonNull;
 
 import com.example.practica1compiladores12022.Grafica.ConvertidorGraficaChart;
-import com.example.practica1compiladores12022.JflexYCup.ErrorAnalisando;
 import com.example.practica1compiladores12022.JflexYCup.Lexema;
 import com.example.practica1compiladores12022.JflexYCup.parser;
+import com.example.practica1compiladores12022.Resportes.ErrorAnalisando;
 
 
 import java.io.Reader;

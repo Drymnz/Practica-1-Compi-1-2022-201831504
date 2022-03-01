@@ -66,10 +66,16 @@ class ConvertidorGrafica {
     }
     private fun caracter(listadoString:ArrayList<String>, valorY:Int):String{
         if(!listadoString.isEmpty()){
-            var text:String = listadoString.get(0)
-            var textA = text.split(",")
-            if ((valorY < textA.size) && (valorY >=0) ){
-                return textA[valorY]
+            if(listadoString.size ==1){
+                var text:String = listadoString.get(0)
+                var textA = text.split(",")
+                if ((valorY < textA.size) && (valorY >=0) ){
+                    return textA[valorY]
+                }
+            }else if (listadoString.size>1){
+                if ((valorY < listadoString.size) && (valorY >=0) ){
+                    return listadoString.get(valorY)
+                }
             }
         }
         return ""

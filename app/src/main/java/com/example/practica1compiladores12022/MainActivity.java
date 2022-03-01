@@ -49,6 +49,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void limpiear(View view){
-        ingresoDeDatos.setText("");
+        ingresoDeDatos.setText("");//limpia el text
     }
 }
