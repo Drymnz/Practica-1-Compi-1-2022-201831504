@@ -7,7 +7,7 @@
     tools:context=".MainActivity_View_Grafica_Barra">
 
     <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/BarChart"
+        android:id="@+id/grafica_bar"
         android:layout_width="334dp"
         android:layout_height="489dp"
         app:layout_constraintBottom_toBottomOf="parent"

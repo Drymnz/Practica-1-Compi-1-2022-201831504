@@ -6,117 +6,121 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity_Reportes">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/titulo_reportes_mate"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/reporte_operacional"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:stretchColumns="0,1,2,3,4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        >
-
-        <TableRow>
-            <TextView
-                android:text = "Operador"
-                android:padding="8dp"
-                android:gravity="center"
-                />
-            <TextView
-                android:text = "Linea"
-                android:padding="8dp"
-                android:gravity="center"
-                />
-            <TextView
-                android:text = "Columna"
-                android:padding="8dp"
-                android:gravity="center"
-                />
-            <TextView
-                android:text = "Ocurrencia"
-                android:textSize="16dp"
-                android:padding="8dp"
-                android:gravity="center"
-                />
-        </TableRow>
-    </TableLayout>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/titulo_reportes_definidos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reporte_operacional" />
-
-    <TableLayout
-        android:id="@+id/reporte_definidos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-        <TableRow>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <TextView
-                android:gravity="center"
-                android:padding="16dp"
-                android:textSize="16dp"
-                android:text="Objeto" />
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_gravity="center"
+                android:text="@string/titulo_reportes_mate"
+                android:textSize="16sp" />
+
+            <TableLayout
+                android:id="@+id/reporte_operacional"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1,2,3,4">
+
+                <TableRow>
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Operador" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Linea" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Columna" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="Ocurrencia"
+                        android:textSize="16dp" />
+                </TableRow>
+            </TableLayout>
 
             <TextView
-                android:gravity="center"
-                android:padding="16dp"
-                android:textSize="16dp"
-                android:text="Cantidad de definiciones" />
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_gravity="center"
+                android:text="@string/titulo_reportes_definidos" />
 
-        </TableRow>
-        <TableRow>
+            <TableLayout
+                android:id="@+id/reporte_definidos"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:gravity="center"
-                android:padding="16dp"
-                android:textSize="16dp"
-                android:text="Barras" />
+                <TableRow>
 
-            <TextView
-                android:id="@+id/num_bar_report"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="0"
-                android:textSize="16dp" />
+                    <TextView
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="Objeto"
+                        android:textSize="16dp" />
 
-        </TableRow>
-        <TableRow>
+                    <TextView
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="Cantidad de definiciones"
+                        android:textSize="16dp" />
 
-            <TextView
-                android:gravity="center"
-                android:padding="16dp"
-                android:textSize="16dp"
-                android:text="Pie" />
+                </TableRow>
 
-            <TextView
-                android:id="@+id/num_pie_report"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="0"
-                android:textSize="16dp" />
+                <TableRow>
 
-        </TableRow>
-    </TableLayout>
+                    <TextView
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="Barras"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/num_bar_report"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="0"
+                        android:textSize="16dp" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="Pie"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/num_pie_report"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="0"
+                        android:textSize="16dp" />
+
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

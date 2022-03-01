@@ -189,33 +189,33 @@ j ::= o:a {:
            | error {:registrar[3]=true;:}
            ;
 o ::= o:a SUMAR o:b {: 
-                    int numeroUno= Integer.parseInt(a);
-                    int numeroDos= Integer.parseInt(b);
-                    int resultado = numeroUno-numeroDos;
+                    double numeroUno= Double.valueOf(a);
+                    double numeroDos= Double.valueOf(b);
+                    double resultado = numeroUno-numeroDos;
                     RESULT = String.valueOf(resultado);
  listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("SUMAR", aleft, aright, numeroUno+"+"+numeroDos));
                     :}
 
 |  o:a RESTAR o:b {:
-                int numeroUno= Integer.parseInt(a);
-                int numeroDos= Integer.parseInt(b);
-                int resultado = numeroUno-numeroDos;
+                double numeroUno= Double.valueOf(a);
+                double numeroDos= Double.valueOf(b);
+                double resultado = numeroUno-numeroDos;
                 RESULT = String.valueOf(resultado);
  listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("RESTAR", aleft, aright, numeroUno+"-"+numeroDos));
                     :}
 
 |  o:a DIVIDIR o:b {:
-                    int numeroUno= Integer.parseInt(a);
-                    int numeroDos= Integer.parseInt(b);
-                    int resultado = numeroUno/numeroDos;
+                    double numeroUno= Double.valueOf(a);
+                    double numeroDos= Double.valueOf(b);
+                    double resultado = numeroUno/numeroDos;
                     RESULT = String.valueOf(resultado);
 listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("DIVIDIR", aleft, aright, numeroUno+"/"+numeroDos));
                     :}
 
 |  o:a MULTIPLICAR o:b {:
-                    int numeroUno= Integer.parseInt(a);
-                    int numeroDos= Integer.parseInt(b);
-                    int resultado = numeroUno*numeroDos;
+                    double numeroUno= Double.valueOf(a);
+                    double numeroDos= Double.valueOf(b);
+                    double resultado = numeroUno*numeroDos;
                     RESULT = String.valueOf(resultado);
 listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("MULTIPLICAR", aleft, aright, numeroUno+"*"+numeroDos));
                     :}

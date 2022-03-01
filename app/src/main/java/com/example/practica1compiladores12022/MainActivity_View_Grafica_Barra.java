@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
 
 public class MainActivity_View_Grafica_Barra extends AppCompatActivity {
     private BarChart barChart;
@@ -21,7 +20,7 @@ public class MainActivity_View_Grafica_Barra extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view_grafica_barra);
         //asigno mi barchart
-        barChart = findViewById(R.id.BarChart);
+        barChart = findViewById(R.id.grafica_bar);
         titulo = findViewById(R.id.tituloGrafica);
         titulo.setText(getIntent().getStringExtra("titulo").toString());
         barChart.setData(new BarData(barras));

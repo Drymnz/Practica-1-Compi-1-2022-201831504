@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.practica1compiladores12022.Grafica.Barras;
+import com.example.practica1compiladores12022.Grafica.ConvertidorGrafica;
 import com.example.practica1compiladores12022.Grafica.Pie;
 import com.example.practica1compiladores12022.MovenActivity.MoveWindow;
 import com.github.mikephil.charting.data.BarDataSet;

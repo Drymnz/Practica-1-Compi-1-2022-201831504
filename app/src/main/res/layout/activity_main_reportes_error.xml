@@ -6,57 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity_Reportes_Error">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/titulo_reportes_err"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/reporte_errores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:stretchColumns="0,1,2,3,4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-        <TableRow>
             <TextView
-                android:text = "Lexema"
-                android:padding="16dp"
-                android:gravity="center"
-                />
-            <TextView
-                android:text = "Linea"
-                android:padding="16dp"
-                android:gravity="center"
-                />
-            <TextView
-                android:text = "Columna"
-                android:padding="16dp"
-                android:gravity="center"
-                />
-            <TextView
-                android:text = "Tipo"
-                android:textSize="16dp"
-                android:padding="16dp"
-                android:gravity="center"
-                />
-            <TextView
-                android:text = "Descripcion"
-                android:padding="16dp"
-                android:gravity="center"
-                />
-        </TableRow>
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="@string/titulo_reportes_err"
+                android:textSize="24sp" />
+
+            <TableLayout
+                android:id="@+id/reporte_errores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1,2,3,4">
+
+                <TableRow>
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="Lexema" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="Linea" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="Columna" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="Tipo"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:text="Descripcion" />
+                </TableRow>
 
 
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
-    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -504,9 +504,9 @@ class CUP$parser$actions {
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
-                    int numeroUno= Integer.parseInt(a);
-                    int numeroDos= Integer.parseInt(b);
-                    int resultado = numeroUno-numeroDos;
+                    double numeroUno= Double.valueOf(a);
+                    double numeroDos= Double.valueOf(b);
+                    double resultado = numeroUno-numeroDos;
                     RESULT = String.valueOf(resultado);
  listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("SUMAR", aleft, aright, numeroUno+"+"+numeroDos));
                     
@@ -525,9 +525,9 @@ class CUP$parser$actions {
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                int numeroUno= Integer.parseInt(a);
-                int numeroDos= Integer.parseInt(b);
-                int resultado = numeroUno-numeroDos;
+                double numeroUno= Double.valueOf(a);
+                double numeroDos= Double.valueOf(b);
+                double resultado = numeroUno-numeroDos;
                 RESULT = String.valueOf(resultado);
  listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("RESTAR", aleft, aright, numeroUno+"-"+numeroDos));
                     
@@ -546,9 +546,9 @@ class CUP$parser$actions {
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                    int numeroUno= Integer.parseInt(a);
-                    int numeroDos= Integer.parseInt(b);
-                    int resultado = numeroUno/numeroDos;
+                    double numeroUno= Double.valueOf(a);
+                    double numeroDos= Double.valueOf(b);
+                    double resultado = numeroUno/numeroDos;
                     RESULT = String.valueOf(resultado);
 listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("DIVIDIR", aleft, aright, numeroUno+"/"+numeroDos));
                     
@@ -567,9 +567,9 @@ listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("DIVIDIR", alef
 		int bright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		String b = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-                    int numeroUno= Integer.parseInt(a);
-                    int numeroDos= Integer.parseInt(b);
-                    int resultado = numeroUno*numeroDos;
+                    double numeroUno= Double.valueOf(a);
+                    double numeroDos= Double.valueOf(b);
+                    double resultado = numeroUno*numeroDos;
                     RESULT = String.valueOf(resultado);
 listadoReportesMatemtaicos.add(new ReportesOperadoresMatematicos("MULTIPLICAR", aleft, aright, numeroUno+"*"+numeroDos));
                     

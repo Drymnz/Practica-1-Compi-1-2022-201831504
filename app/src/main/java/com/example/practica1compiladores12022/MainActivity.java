@@ -39,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
     }
     //metodo para ir al listado de graficas para graficar en el programa
     private void startGraph(){
+        /*
         Intent next = new Intent(this,MainActivity_Grafica_View.class);
+        next.putExtra("text",ingresoDeDatos.getText().toString());
+        startActivity(next);*/
+        Intent next = new Intent(this,MainActivity_View_Graphics.class);
         next.putExtra("text",ingresoDeDatos.getText().toString());
         startActivity(next);
     }
